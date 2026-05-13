@@ -67,14 +67,14 @@ public sealed partial class Ribbon : Control
         nameof(OptionsFlyout),
         typeof(FlyoutBase),
         typeof(Ribbon),
-        new PropertyMetadata(null));
+        new PropertyMetadata(null, OnOptionsFlyoutPropertyChanged));
 
     /// <summary>
     /// The flyout to display when the user clicks on the ribbon options button.
     /// </summary>
-    public FlyoutBase OptionsFlyout
+    public FlyoutBase? OptionsFlyout
     {
-        get => (FlyoutBase)GetValue(OptionsFlyoutProperty);
+        get => (FlyoutBase?)GetValue(OptionsFlyoutProperty);
         set => SetValue(OptionsFlyoutProperty, value);
     }
 
@@ -85,7 +85,7 @@ public sealed partial class Ribbon : Control
         nameof(OptionsAccessibleName),
         typeof(string),
         typeof(Ribbon),
-        new PropertyMetadata(string.Empty, OnOptionsFlyoutPropertyChanged));
+        new PropertyMetadata(string.Empty));
 
     /// <summary>
     /// The accessible name for the options button.
@@ -106,7 +106,7 @@ public sealed partial class Ribbon : Control
         new PropertyMetadata(string.Empty));
 
     /// <summary>
-    /// The access key to set on the options flyout button/
+    /// The access key to set on the options flyout button.
     /// </summary>
     public string OptionsAccessKey
     {
