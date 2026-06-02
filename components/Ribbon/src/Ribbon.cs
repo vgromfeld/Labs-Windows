@@ -78,60 +78,6 @@ public sealed partial class Ribbon : Control
         typeof(Ribbon),
         new PropertyMetadata(string.Empty));
 
-    /// <summary>
-    /// The DP to store the <see cref="OptionsFlyout"/> property value.
-    /// </summary>
-    public static readonly DependencyProperty OptionsFlyoutProperty = DependencyProperty.Register(
-        nameof(OptionsFlyout),
-        typeof(FlyoutBase),
-        typeof(Ribbon),
-        new PropertyMetadata(null, OnOptionsFlyoutPropertyChanged));
-
-    /// <summary>
-    /// The flyout to display when the user clicks on the ribbon options button.
-    /// </summary>
-    public FlyoutBase? OptionsFlyout
-    {
-        get => (FlyoutBase?)GetValue(OptionsFlyoutProperty);
-        set => SetValue(OptionsFlyoutProperty, value);
-    }
-
-    /// <summary>
-    /// The DP to store the <see cref="OptionsAccessibleName"/> property value.
-    /// </summary>
-    public static readonly DependencyProperty OptionsAccessibleNameProperty = DependencyProperty.Register(
-        nameof(OptionsAccessibleName),
-        typeof(string),
-        typeof(Ribbon),
-        new PropertyMetadata(string.Empty));
-
-    /// <summary>
-    /// The accessible name for the options button.
-    /// </summary>
-    public string OptionsAccessibleName
-    {
-        get => (string)GetValue(OptionsAccessibleNameProperty);
-        set => SetValue(OptionsAccessibleNameProperty, value);
-    }
-
-    /// <summary>
-    /// The DP to store the <see cref="OptionsAccessKey"/> property value.
-    /// </summary>
-    public static readonly DependencyProperty OptionsAccessKeyProperty = DependencyProperty.Register(
-        nameof(OptionsAccessKey),
-        typeof(string),
-        typeof(Ribbon),
-        new PropertyMetadata(string.Empty));
-
-    /// <summary>
-    /// The access key to set on the options flyout button.
-    /// </summary>
-    public string OptionsAccessKey
-    {
-        get => (string)GetValue(OptionsAccessKeyProperty);
-        set => SetValue(OptionsAccessKeyProperty, value);
-    }
-
     public Ribbon()
     {
         DefaultStyleKey = typeof(Ribbon);
