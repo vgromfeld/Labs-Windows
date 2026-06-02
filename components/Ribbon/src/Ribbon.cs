@@ -52,13 +52,31 @@ public sealed partial class Ribbon : Control
         new PropertyMetadata(20.0));
 
     /// <summary>
-    /// The amount to add or remove from the current scroll position.
+    /// The DP to store the <see cref="OptionsFlyout"/> property value.
     /// </summary>
-    public double ScrollStep
-    {
-        get => (double)GetValue(ScrollStepProperty);
-        set => SetValue(ScrollStepProperty, value);
-    }
+    public static readonly DependencyProperty OptionsFlyoutProperty = DependencyProperty.Register(
+        nameof(OptionsFlyout),
+        typeof(FlyoutBase),
+        typeof(Ribbon),
+        new PropertyMetadata(null, OnOptionsFlyoutPropertyChanged));
+
+    /// <summary>
+    /// The DP to store the <see cref="OptionsAccessibleName"/> property value.
+    /// </summary>
+    public static readonly DependencyProperty OptionsAccessibleNameProperty = DependencyProperty.Register(
+        nameof(OptionsAccessibleName),
+        typeof(string),
+        typeof(Ribbon),
+        new PropertyMetadata(string.Empty));
+
+    /// <summary>
+    /// The DP to store the <see cref="OptionsAccessKey"/> property value.
+    /// </summary>
+    public static readonly DependencyProperty OptionsAccessKeyProperty = DependencyProperty.Register(
+        nameof(OptionsAccessKey),
+        typeof(string),
+        typeof(Ribbon),
+        new PropertyMetadata(string.Empty));
 
     /// <summary>
     /// The DP to store the <see cref="OptionsFlyout"/> property value.
@@ -120,6 +138,42 @@ public sealed partial class Ribbon : Control
 
         _items = [];
         _items.CollectionChanged += OnItemsCollectionChanged;
+    }
+
+    /// <summary>
+    /// Gets or sets the amount to add or remove from the current scroll position.
+    /// </summary>
+    public double ScrollStep
+    {
+        get => (double)GetValue(ScrollStepProperty);
+        set => SetValue(ScrollStepProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the flyout to display when the user clicks on the ribbon options button.
+    /// </summary>
+    public FlyoutBase? OptionsFlyout
+    {
+        get => (FlyoutBase?)GetValue(OptionsFlyoutProperty);
+        set => SetValue(OptionsFlyoutProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the accessible name for the options button.
+    /// </summary>
+    public string OptionsAccessibleName
+    {
+        get => (string)GetValue(OptionsAccessibleNameProperty);
+        set => SetValue(OptionsAccessibleNameProperty, value);
+    }
+
+    /// <summary>
+    /// Gets or sets the access key to set on the options flyout button.
+    /// </summary>
+    public string OptionsAccessKey
+    {
+        get => (string)GetValue(OptionsAccessKeyProperty);
+        set => SetValue(OptionsAccessKeyProperty, value);
     }
 
     public IList<UIElement> Items => _items;
