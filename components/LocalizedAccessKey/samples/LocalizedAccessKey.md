@@ -49,5 +49,4 @@ To see the changes, the control will have to be reloaded (for example by navigat
 ## Sample
 You can add new keyboard layouts from the Windows settings. Go to "Clock and languages" > "Language" > "Add a language" and select the desired language. You can then switch between keyboard layouts using the language bar in the taskbar.
 
-
 > [!Sample LocalizedAccessKeyCustomSample]
