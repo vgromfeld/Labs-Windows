@@ -39,8 +39,10 @@ public sealed partial class LocalizedAccessKey : MarkupExtension
         : string.Concat(VirtualKeys.Items.Select(GetLocalizedAccessKey));
 
 
+#if WINAPPSDK
     /// <inheritdoc/>
     protected override object ProvideValue(IXamlServiceProvider serviceProvider) => ProvideValue();
+#endif
 
     private static string GetLocalizedAccessKey(VirtualKey virtualKey)
     {
