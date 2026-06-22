@@ -42,17 +42,25 @@ public sealed class VirtualKeySequence
             return null;
         }
 
-        ReadOnlySpan<char> chars = rawString;
+        ReadOnlySpan<char> chars = rawString.AsSpan();
         var virtualKeys = new VirtualKey[chars.Length];
         for (var i = 0; i < chars.Length; i++)
         {
             var character = chars.Slice(i, 1);
             if (char.IsDigit(character[0]))
             {
+#if WINUI2
+                virtualKeys[i] = VirtualKey.Number0 + int.Parse(character.ToString());
+#else
                 virtualKeys[i] = VirtualKey.Number0 + int.Parse(character);
+#endif
             }
             else if (char.IsLetter(character[0]) &&
+#if WINUI2
+                Enum.TryParse<VirtualKey>(chars.Slice(i, 1).ToString(), out var vKey) &&
+#else
                 Enum.TryParse<VirtualKey>(chars.Slice(i, 1), out var vKey) &&
+#endif
                 vKey != VirtualKey.None)
             {
                 virtualKeys[i] = vKey;
